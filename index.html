@@ -1,14 +1,152 @@
-html
-
 <!doctype html>
 <html lang="de">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Meine Seite</title>
+  <title>Übersetzen</title>
+  <style>
+    :root {
+      --bg: #0b1220;
+      --card: rgba(255,255,255,0.06);
+      --border: rgba(255,255,255,0.12);
+      --hover: rgba(255,255,255,0.10);
+      --hover-border: rgba(255,255,255,0.22);
+      --text: #e8eefc;
+      --muted: rgba(232,238,252,0.8);
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      display: flex;
+      min-height: 100vh;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      box-sizing: border-box;
+    }
+
+    .wrap { width: min(1100px, 100%); }
+
+    .header { margin-bottom: 18px; }
+    h1 { margin: 0 0 6px; font-size: 24px; }
+    p { margin: 0; opacity: 0.85; }
+
+    .grid {
+      display: grid;
+      gap: 14px;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      margin-top: 18px;
+    }
+
+    .tile {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px;
+      text-decoration: none;
+      color: inherit;
+      transition: transform .08s ease, background .08s ease, border-color .08s ease;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 72px;
+      box-sizing: border-box;
+    }
+
+    .tile:hover {
+      transform: translateY(-2px);
+      background: var(--hover);
+      border-color: var(--hover-border);
+    }
+
+    .lang { font-weight: 800; letter-spacing: 0.2px; }
+    .hint { opacity: .78; font-size: 12px; margin-top: 4px; }
+    .left { display: flex; flex-direction: column; }
+    .arrow { opacity: .95; font-size: 18px; }
+    .small {
+      margin-top: 14px;
+      font-size: 12px;
+      opacity: 0.75;
+      line-height: 1.4;
+    }
+
+    /* optional: macht den Text leichter kopierbar, falls du ihn später anpasst */
+    textarea {
+      width: 100%;
+      max-width: 720px;
+      height: 0;
+      opacity: 0;
+      position: absolute;
+      pointer-events: none;
+    }
+  </style>
 </head>
 <body>
-  <h1>Hallo!</h1>
-  <p>Deine Seite ist bereit. Jetzt kommen die Kacheln rein.</p>
+  <div class="wrap">
+    <div class="header">
+      <h1>Übersetzen</h1>
+      <p>Wähle eine Sprache – der Text wird direkt übersetzt.</p>
+      <div class="small">
+        Tipp: Ersetze im Code unten den Text in <code>const text = "..."</code>.
+      </div>
+    </div>
+
+    <div class="grid" id="grid"></div>
+  </div>
+
+  <script>
+    // Variante A: Text ist fest im Code.
+    // Ersetze den Text in den Anführungszeichen.
+    const text = "Hier kommt dein Text rein, der übersetzt werden soll.";
+
+    // Welche Sprachen als Kacheln erscheinen sollen:
+    const langs = [
+      { code: "en", label: "Englisch" },
+      { code: "fr", label: "Französisch" },
+      { code: "es", label: "Spanisch" },
+      { code: "it", label: "Italienisch" },
+      { code: "pt", label: "Portugiesisch" },
+      { code: "pl", label: "Polnisch" },
+      { code: "tr", label: "Türkisch" },
+      { code: "ru", label: "Russisch" },
+      { code: "ar", label: "Arabisch" },
+      { code: "ja", label: "Japanisch" },
+      { code: "ko", label: "Koreanisch" },
+      { code: "zh-CN", label: "Chinesisch (vereinfachtes)" }
+    ];
+
+    function makeTranslateUrl(targetLang) {
+      // Google Translate URL (üblich): sl=auto, tl=...
+      // text wird URL-sicher kodiert.
+      const url = new URL("https://translate.google.com/");
+      url.searchParams.set("sl", "auto");
+      url.searchParams.set("tl", targetLang);
+      url.searchParams.set("text", text);
+      url.searchParams.set("op", "translate");
+      return url.toString();
+    }
+
+    const grid = document.getElementById("grid");
+
+    langs.forEach(l => {
+      const a = document.createElement("a");
+      a.className = "tile";
+      a.href = makeTranslateUrl(l.code);
+      a.target = "_blank";
+      a.rel = "noopener noreferrer";
+
+      a.innerHTML = `
+        <div class="left">
+          <div class="lang">${l.label}</div>
+          <div class="hint">In ${l.code}</div>
+        </div>
+        <div class="arrow">↗</div>
+      `;
+      grid.appendChild(a);
+    });
+  </script>
 </body>
 </html>
