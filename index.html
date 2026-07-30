@@ -1,152 +1,127 @@
-<!doctype html>
-<html lang="de">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Übersetzen</title>
-  <style>
-    :root {
-      --bg: #0b1220;
-      --card: rgba(255,255,255,0.06);
-      --border: rgba(255,255,255,0.12);
-      --hover: rgba(255,255,255,0.10);
-      --hover-border: rgba(255,255,255,0.22);
-      --text: #e8eefc;
-      --muted: rgba(232,238,252,0.8);
-    }
-
-    body {
-      margin: 0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      display: flex;
-      min-height: 100vh;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-      box-sizing: border-box;
-    }
-
-    .wrap { width: min(1100px, 100%); }
-
-    .header { margin-bottom: 18px; }
-    h1 { margin: 0 0 6px; font-size: 24px; }
-    p { margin: 0; opacity: 0.85; }
-
-    .grid {
-      display: grid;
-      gap: 14px;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      margin-top: 18px;
-    }
-
-    .tile {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 16px;
-      text-decoration: none;
-      color: inherit;
-      transition: transform .08s ease, background .08s ease, border-color .08s ease;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      min-height: 72px;
-      box-sizing: border-box;
-    }
-
-    .tile:hover {
-      transform: translateY(-2px);
-      background: var(--hover);
-      border-color: var(--hover-border);
-    }
-
-    .lang { font-weight: 800; letter-spacing: 0.2px; }
-    .hint { opacity: .78; font-size: 12px; margin-top: 4px; }
-    .left { display: flex; flex-direction: column; }
-    .arrow { opacity: .95; font-size: 18px; }
-    .small {
-      margin-top: 14px;
-      font-size: 12px;
-      opacity: 0.75;
-      line-height: 1.4;
-    }
-
-    /* optional: macht den Text leichter kopierbar, falls du ihn später anpasst */
-    textarea {
-      width: 100%;
-      max-width: 720px;
-      height: 0;
-      opacity: 0;
-      position: absolute;
-      pointer-events: none;
-    }
-  </style>
-</head>
-<body>
-  <div class="wrap">
-    <div class="header">
-      <h1>Übersetzen</h1>
-      <p>Wähle eine Sprache – der Text wird direkt übersetzt.</p>
-      <div class="small">
-        Tipp: Ersetze im Code unten den Text in <code>const text = "..."</code>.
-      </div>
-    </div>
-
-    <div class="grid" id="grid"></div>
-  </div>
-
-  <script>
-    // Variante A: Text ist fest im Code.
-    // Ersetze den Text in den Anführungszeichen.
-    const text = "Hier kommt dein Text rein, der übersetzt werden soll.";
-
-    // Welche Sprachen als Kacheln erscheinen sollen:
-    const langs = [
-      { code: "en", label: "Englisch" },
-      { code: "fr", label: "Französisch" },
-      { code: "es", label: "Spanisch" },
-      { code: "it", label: "Italienisch" },
-      { code: "pt", label: "Portugiesisch" },
-      { code: "pl", label: "Polnisch" },
-      { code: "tr", label: "Türkisch" },
-      { code: "ru", label: "Russisch" },
-      { code: "ar", label: "Arabisch" },
-      { code: "ja", label: "Japanisch" },
-      { code: "ko", label: "Koreanisch" },
-      { code: "zh-CN", label: "Chinesisch (vereinfachtes)" }
-    ];
-
-    function makeTranslateUrl(targetLang) {
-      // Google Translate URL (üblich): sl=auto, tl=...
-      // text wird URL-sicher kodiert.
-      const url = new URL("https://translate.google.com/");
-      url.searchParams.set("sl", "auto");
-      url.searchParams.set("tl", targetLang);
-      url.searchParams.set("text", text);
-      url.searchParams.set("op", "translate");
-      return url.toString();
-    }
-
-    const grid = document.getElementById("grid");
-
-    langs.forEach(l => {
-      const a = document.createElement("a");
-      a.className = "tile";
-      a.href = makeTranslateUrl(l.code);
-      a.target = "_blank";
-      a.rel = "noopener noreferrer";
-
-      a.innerHTML = `
-        <div class="left">
-          <div class="lang">${l.label}</div>
-          <div class="hint">In ${l.code}</div>
-        </div>
-        <div class="arrow">↗</div>
-      `;
-      grid.appendChild(a);
-    });
-  </script>
-</body>
-</html>
+detailTop: "feministisches",
+detailPlace: "wesertor",
+detailBottom: "für Frauen, Kinder und Queers",
+    intro: "Wir laden euch herzlich ein zu unserem Stadtteilfest am 28.3 im Sodensternpark von 14-18 Uhr.",
+    intro: "Wir laden euch herzlich ein zu unserem Stadtteilfest am 10.5. im Sodensternpark von 14-18 Uhr.",
+paragraphs: [
+"Wir, das sind Frauen und queere Menschen aus der Nachbarschaft. Wir wünschen uns Momente, an denen wir als Nachbarschaft zusammenkommen und uns kennenlernen können.",
+"Deswegen veranstalten wir dieses Fest! Es wird ein Buffet, Programm für Kinder und eine kleine Ausstellung zu unserer Stadt geben.",
+@@ -312,7 +312,7 @@
+"Wir sehen uns beim Fest im Sodensternpark!"
+],
+stripText: "Hüpfburg, Essen, Getränke und mehr!",
+    dateValue: "28.03",
+    dateValue: "10.05.",
+timeValue: "14:00-18:00",
+locationValue: "sodensternpark",
+footerNote: "Hier können später noch Infos zu Barrieren, Zugänglichkeit oder weiteren Details ergänzt werden."
+@@ -327,7 +327,7 @@
+detailTop: "feminist",
+detailPlace: "wesertor",
+detailBottom: "for women, kids and queers",
+    intro: "We cordially invite you to our neighbourhood festival on 28 March in Sodensternpark from 2 to 6 p.m.",
+    intro: "We cordially invite you to our neighbourhood festival on 10 May in Sodensternpark from 2 to 6 p.m.",
+paragraphs: [
+"We are women and queer people from the neighbourhood. We want to create moments where we can come together as a neighbourhood and get to know each other.",
+"That's why we're organising this festival! There will be a cake buffet, a programme for children and a small exhibition about our city.",
+@@ -336,7 +336,7 @@
+"See you at the festival in Sodensternpark!"
+],
+stripText: "Bouncy castle, food, drinks and more!",
+    dateValue: "28.03",
+    dateValue: "10.05.",
+timeValue: "2:00-6:00 pm",
+locationValue: "sodensternpark",
+footerNote: "You can later add information here about accessibility, toilets, quiet spaces, or other practical details."
+@@ -351,7 +351,7 @@
+detailTop: "festival feminista",
+detailPlace: "wesertor",
+detailBottom: "para mujeres, peques y queers",
+    intro: "Les invitamos cordialmente a nuestra fiesta del barrio el 28 de marzo en el Sodensternpark, de 14:00 a 18:00 horas.",
+    intro: "Les invitamos cordialmente a nuestra fiesta del barrio el 10 de mayo en el Sodensternpark, de 14:00 a 18:00 horas.",
+paragraphs: [
+"Somos mujeres y personas queer del barrio. Queremos crear momentos en los que podamos reunirnos como vecinas y conocernos.",
+"¡Por eso organizamos esta fiesta! Habrá un bufé de tartas, un programa para niños y una pequeña exposición sobre nuestra ciudad.",
+@@ -360,7 +360,7 @@
+"¡Nos vemos en la fiesta en el parque Sodensternpark!"
+],
+stripText: "¡Castillo hinchable, comida, bebidas y más!",
+    dateValue: "28.03",
+    dateValue: "10.05.",
+timeValue: "14:00-18:00",
+locationValue: "sodensternpark",
+footerNote: "Más adelante pueden añadir aquí información sobre accesibilidad, baños, espacios tranquilos u otros detalles prácticos."
+@@ -375,7 +375,7 @@
+detailTop: "fête féministe",
+detailPlace: "wesertor",
+detailBottom: "pour les femmes, les enfants et les queers",
+    intro: "Nous vous invitons cordialement à notre fête de quartier le 28 mars au Sodensternpark de 14h à 18h.",
+    intro: "Nous vous invitons cordialement à notre fête de quartier le 10 mai au Sodensternpark de 14h à 18h.",
+paragraphs: [
+"Nous, ce sont des femmes et des personnes queer du quartier. Nous souhaitons créer des moments où nous pouvons nous réunir en tant que voisin·es et faire connaissance.",
+"C'est pourquoi nous organisons cette fête ! Il y aura un buffet de gâteaux, un programme pour les enfants et une petite exposition sur notre ville.",
+@@ -384,7 +384,7 @@
+"Rendez-vous à la fête au Sodensternpark !"
+],
+stripText: "Château gonflable, nourriture, boissons et plus !",
+    dateValue: "28.03",
+    dateValue: "10.05.",
+timeValue: "14h00-18h00",
+locationValue: "sodensternpark",
+footerNote: "Vous pourrez ajouter ici plus tard des informations sur l’accessibilité, les toilettes, les espaces calmes ou d’autres détails pratiques."
+@@ -399,7 +399,7 @@
+detailTop: "feminist",
+detailPlace: "wesertor",
+detailBottom: "kadınlar, çocuklar ve queerler için",
+    intro: "28 Mart günü saat 14-18 arasında Sodensternpark'ta düzenleyeceğimiz mahalle festivaline sizleri davet ediyoruz.",
+    intro: "10 Mayıs günü saat 14-18 arasında Sodensternpark'ta düzenleyeceğimiz mahalle festivaline sizleri davet ediyoruz.",
+paragraphs: [
+"Bizler, mahalledeki kadınlar ve queer bireyleriz. Mahalle sakinleri olarak bir araya gelip tanışabileceğimiz anlar yaşamak istiyoruz.",
+"Bu nedenle bu festivali düzenliyoruz! Kek büfesi, çocuklar için program ve şehrimizle ilgili küçük bir sergi olacak.",
+@@ -408,7 +408,7 @@
+"Sodensternpark'taki festivalde görüşmek üzere!"
+],
+stripText: "Şişme oyun parkı, yiyecek, içecek ve daha fazlası!",
+    dateValue: "28.03",
+    dateValue: "10.05.",
+timeValue: "14:00-18:00",
+locationValue: "sodensternpark",
+footerNote: "Daha sonra erişilebilirlik, tuvaletler, sessiz alanlar veya diğer pratik bilgiler burada eklenebilir."
+@@ -423,7 +423,7 @@
+detailTop: "مهرجان نسوي",
+detailPlace: "فيسرتور",
+detailBottom: "للنساء والأطفال ومجتمع الميم",
+  intro: "ندعوكم بكل ترحاب إلى حفل الحي الذي سنقيمه في 28 مارس في حديقة سودنستيرن من الساعة 2 إلى 6 مساءً.",
+  intro: "ندعوكم بكل ترحاب إلى حفل الحي الذي سنقيمه في 10 مايو في حديقة سودنستيرن من الساعة 14:00 إلى 18:00.",
+paragraphs: [
+"نحن نساء ومجتمع الميم من الحي. نرغب في قضاء أوقات ممتعة مع جيراننا للتعارف.",
+"لهذا السبب نقيم هذا الحفل! سيكون هناك بوفيه كعك وبرنامج للأطفال ومعرض صغير عن مدينتنا.",
+@@ -432,8 +432,8 @@
+"نراكم في المهرجان في حديقة سودنستيرن!"
+],
+stripText: "قلعة مطاطية وطعام ومشروبات والمزيد!",
+  dateValue: "28.03",
+  timeValue: "2:00-6:00 مساءً",
+  dateValue: "10.05.",
+  timeValue: "14:00-18:00 مساءً",
+locationValue: "حديقة سودنستيرن",
+footerNote: "يمكن لاحقًا إضافة معلومات هنا حول سهولة الوصول ودورات المياه والأماكن الهادئة أو تفاصيل عملية أخرى."
+},
+@@ -447,7 +447,7 @@
+detailTop: "феминистский",
+detailPlace: "везертор",
+detailBottom: "для женщин, детей и квир-людей",
+    intro: "Мы сердечно приглашаем вас на наш районный праздник, который состоится 28 марта в парке Sodensternpark с 14 до 18 часов.",
+    intro: "Мы сердечно приглашаем вас на наш районный праздник, который состоится 10 мая в парке Sodensternpark с 14 до 18 часов.",
+paragraphs: [
+"Мы — женщины и квир-люди из нашего района. Мы хотим создать моменты, когда мы, как соседи, можем собраться вместе и познакомиться друг с другом.",
+"Именно поэтому мы устраиваем этот праздник! Будет организован буфет с пирожными, программа для детей и небольшая выставка, посвящённая нашему городу.",
+@@ -456,7 +456,7 @@
+"Увидимся на празднике в парке Sodensternpark!"
+],
+stripText: "Надувной замок, еда, напитки и многое другое!",
+    dateValue: "28.03",
+    dateValue: "10.05.",
+timeValue: "14:00-18:00",
+locationValue: "sodensternpark",
+footerNote: "Позже здесь можно добавить информацию о доступности, туалетах, тихих пространствах и другие практические детали."
